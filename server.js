@@ -23,12 +23,19 @@ app.post("/contact", async (req, res) => {
     },
   });
 
-  const mailOptions = {
-    from: email,
-    to: "kellenag115@gmail.com",
-    subject: `Message from ${name}`,
-    text: message,
-  };
+const mailOptions = {
+  from: `"Website Contact Form" <kellenag115@gmail.com>`,
+  to: "kellenag115@gmail.com",
+  replyTo: email,
+  subject: `New message from ${name}`,
+  text: `
+Name: ${name}
+Email: ${email}
+
+Message:
+${message}
+`,
+};
 
   try {
     await transporter.sendMail(mailOptions);
