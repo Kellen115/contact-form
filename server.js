@@ -11,6 +11,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.post("/contact", async (req, res) => {
+  console.log("POST /contact received");
+  console.log("Body:", req.body);
   const { name, email, message } = req.body;
 
   const transporter = nodemailer.createTransport({
